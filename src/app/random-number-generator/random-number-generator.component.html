@@ -1,0 +1,74 @@
+<div class="d-flex flex-row col-12 my-1 px-3">
+  <h4>Pattern Builder</h4>
+  <button
+    class="btn btn-sm btn-primary my-auto ms-auto me-3"
+    (click)="generateBarcodes()"
+  >
+    <i class="fas fa-sync-alt fa-fw pe-1"></i>Generate
+  </button>
+  <i
+    class="fas my-auto icon lg"
+    data-toggle="collapse"
+    data-target="#collapsePattern"
+    (click)="isPatternCollapse = !isPatternCollapse"
+    [ngClass]="{
+      'fa-chevron-circle-down': !isPatternCollapse,
+      'fa-chevron-circle-up': isPatternCollapse
+    }"
+  ></i>
+</div>
+
+<div class="collapse" id="collapsePattern">
+  <div
+    class="row m-0 my-1"
+    *ngFor="
+      let num of randoms;
+      let first = first;
+      let last = last;
+      let i = index
+    "
+  >
+    <div class="col-auto">
+      <input
+        type="text"
+        class="form-control"
+        id="text-number"
+        placeholder="Text/Number"
+        [(ngModel)]="num.field"
+      />
+    </div>
+    <div class="col-auto my-auto">
+      <i class="fas fa-plus-circle fa-2x text-success" (click)="addRow()"></i>
+    </div>
+    <div class="col-auto my-auto p-0">
+      <i
+        class="fas fa-minus-circle fa-2x text-danger"
+        [ngClass]="{ disableImg: first && last }"
+        (click)="removeRow(i)"
+      ></i>
+    </div>
+  </div>
+  <div class="row m-0 my-1">
+    <div class="col-auto">
+      <input
+        type="number"
+        class="form-control"
+        id="repetitions"
+        placeholder="Repetitions"
+        [(ngModel)]="repetitions"
+        (ngModelChange)="onFrequencyChange(repetitions)"
+      />
+    </div>
+    <!-- <div class="col-auto my-auto ms-auto" *ngIf="isPatternCollapse">
+      <button class="btn btn-sm btn-primary me-5" (click)="generateBarcodes()">
+        <i class="fas fa-sync-alt fa-fw pe-1"></i>Generate
+      </button>
+    </div> -->
+  </div>
+  <div class="row m-0 my-1">
+    <label class="col-12">
+      <input class="form-check-input me-1" type="checkbox" [(ngModel)]="includeHeader" (ngModelChange)="onAttachHeadersChange(includeHeader)">
+      Include Header in CSV
+    </label>
+  </div>
+</div>
