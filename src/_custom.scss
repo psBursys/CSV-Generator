@@ -1,0 +1,60 @@
+.disableImg {
+  -webkit-filter: grayscale(100%);
+  /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+  pointer-events: none;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.hand {
+  cursor: pointer;
+}
+
+.icon {
+  font-size: 1.4rem;
+  color: $primary;
+  @each $key,
+    $value
+      in (
+        'xxxs': 1rem,
+        'xxs': 1.2rem,
+        'xs': 1.4rem,
+        'sm': 1.6rem,
+        'md': 1.8rem,
+        'lg': 2rem,
+        'xl': 2.2rem,
+        'xxl': 2.4rem,
+        'xxxl': 2.6rem
+      )
+  {
+    &.#{$key} {
+      font-size: $value;
+    }
+  }
+  &:hover {
+    color: $success;
+    cursor: pointer;
+  }
+}
+
+.scroll-to-end {
+  position: absolute;
+  right: 40px;
+  top: 60px;
+  background: #efefef;
+  padding: 15px;
+  border-radius: 50%;
+}
+
+.scrollToBottom{
+  background: #f3f3f3;
+  border-radius: 50%;
+  padding: 13px;
+  height: 55px;
+  width: 55px;
+  box-shadow: 0px 9px 10px 0 #cbcbcb;
+  position: absolute;
+  right: 20px;
+  top: 85px;
+}

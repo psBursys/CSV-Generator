@@ -1,4 +1,54 @@
-<hello name="{{ name }}"></hello>
-<p>
-  Start editing to see some magic happen :)
-</p>
+<span class="scrollToBottom"> </span>
+
+<i
+  class="
+    fas
+    fa-chevron-down fa-2x
+    faa-bounce faa-reverse
+    animated-hover
+    faa-slow
+    hand
+    scrollToBottom
+  "
+  (click)="scrollToBottom()"
+></i>
+<random-number-generator
+  (pattern)="onPatternChange($event)"
+  (frequency)="onFrequencyChange($event)"
+  (attachHeaders)="onAttachHeaders($event)"
+></random-number-generator>
+
+<div class="table-responsive" *ngIf="serialData?.length > 0">
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Serial Number</th>
+        <th scope="col">
+          <div class="d-flex">
+            <span>PO Number</span>
+            <i class="far fa-edit icon xxxs ms-auto me-1 my-auto"></i>
+            <i class="fas fa-redo-alt icon xxxs my-auto"></i>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let sr of serialData; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <th scope="row">{{ sr.serialNumber }}</th>
+        <th scope="row">{{ sr.poNumber }}</th>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="row m-0 col-12 p-3" *ngIf="serialData?.length > 0">
+  <button
+    class="btn btn-sm btn-primary col-auto ms-auto"
+    (click)="downloadCSV()"
+  >
+    <i class="fas fa-download fa-fw"></i>
+    Download CSV
+  </button>
+</div>
